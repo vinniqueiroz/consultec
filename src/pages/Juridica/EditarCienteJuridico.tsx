@@ -5,7 +5,30 @@ import { IMaskInput } from "react-imask";
 import cadastraCliente from "../../services/client/cadastraClientes";
 import style from "./Cadastro.module.css";
 
-export default function CadastroFisica() {
+interface InfoClienteProps {
+  razaosocial: string;
+  cgc: string;
+  fantasia: string;
+  telefone: string;
+  email: string;
+  cep: string;
+  cidade: string;
+  estado: string;
+  numero: string;
+  bairro: string;
+  ramodeatividade: string;
+  logradouro: string;
+  usursefaz: string;
+  passsefaz: string;
+  contrato: string;
+  pais: string;
+  cnae: string;
+  plcontabil: string;
+  plfiscal: string;
+  plpessoal: string;
+}
+
+export default function EditarClienteJuridico(props: InfoClienteProps) {
   const isMobile = useMediaQuery("(max-width: 50em)");
   const form = useForm({
     initialValues: {
@@ -127,7 +150,7 @@ export default function CadastroFisica() {
                 size="sm"
                 {...form.getInputProps("contrato")}
               >
-                <Switch value="Contrato" />
+                <Switch value="Contrato" defaultChecked />
               </Switch.Group>
             </Flex>
             <Flex
@@ -152,16 +175,18 @@ export default function CadastroFisica() {
             gap="xs"
           >
             <TextInput
-              label="Razão social "
+              label="Razão Social"
               placeholder="Informe a razão social"
               className={style.inputCamp}
+              defaultValue={props.razaosocial}
               {...form.getInputProps("razaosocial")}
             />
 
             <TextInput
-              label="Nome fantasia"
+              label="Fantasia"
               placeholder="Informe o nome fantasia"
               className={style.inputCamp}
+              defaultValue={props.fantasia}
               {...form.getInputProps("fantasia")}
             />
             <InputBase<any>
@@ -170,6 +195,7 @@ export default function CadastroFisica() {
               mask="000.000.000-00"
               placeholder="Informe o CNPJ"
               className={style.inputCamp}
+              defaultValue={props.cgc}
               {...form.getInputProps("cgc")}
             />
             <InputBase<any>
@@ -178,18 +204,21 @@ export default function CadastroFisica() {
               mask="+00 (00) 00000-0000"
               placeholder="Informe o telefone"
               className={style.inputCamp}
+              defaultValue={props.telefone}
               {...form.getInputProps("telefone")}
             />
             <TextInput
               label="E-mail"
               placeholder="Informe o e-mail"
               className={style.inputCamp}
+              defaultValue={props.email}
               {...form.getInputProps("email")}
             />
             <TextInput
               label="CNAE"
               placeholder="Informe o cnae"
               className={style.inputCamp}
+              defaultValue={props.cnae}
               {...form.getInputProps("cnae")}
             />
 
@@ -197,6 +226,7 @@ export default function CadastroFisica() {
               label="Ramo de Atividade"
               placeholder="Informe o ramo de atividade"
               className={style.inputCamp}
+              defaultValue={props.ramodeatividade}
               {...form.getInputProps("ramodeatividade")}
             />
 
@@ -206,12 +236,14 @@ export default function CadastroFisica() {
               mask="00000-000"
               placeholder="Informe o CEP"
               className={style.inputCamp}
+              defaultValue={props.cep}
               {...form.getInputProps("cep")}
             />
             <TextInput
               label="Cidade"
               placeholder="Informe o cidade"
               className={style.inputCamp}
+              defaultValue={props.cidade}
               {...form.getInputProps("cidade")}
             />
 
@@ -219,12 +251,14 @@ export default function CadastroFisica() {
               label="Logradouro"
               placeholder="Informe o logradouro"
               className={style.inputCamp}
+              defaultValue={props.logradouro}
               {...form.getInputProps("logradouro")}
             />
             <TextInput
               label="Bairro"
               placeholder="Informe o Bairro"
               className={style.inputCamp}
+              defaultValue={props.bairro}
               {...form.getInputProps("bairro")}
             />
 
@@ -232,6 +266,7 @@ export default function CadastroFisica() {
               label="Estado"
               placeholder="Informe o estado"
               className={style.inputCamp}
+              defaultValue={props.estado}
               {...form.getInputProps("estado")}
             />
 
@@ -239,6 +274,7 @@ export default function CadastroFisica() {
               label="País"
               placeholder="Informe o País"
               className={style.inputCamp}
+              defaultValue={props.pais}
               {...form.getInputProps("pais")}
             />
 
@@ -246,6 +282,7 @@ export default function CadastroFisica() {
               label="Número"
               placeholder="Informe o numero"
               className={style.inputCamp}
+              defaultValue={props.numero}
               {...form.getInputProps("numero")}
             />
 
@@ -253,12 +290,14 @@ export default function CadastroFisica() {
               label="Usuário Sefaz"
               placeholder="Login"
               className={style.inputCamp}
+              defaultValue={props.usursefaz}
               {...form.getInputProps("usursefaz")}
             />
             <TextInput
               label="Senha Sefaz"
               placeholder="Senha"
               className={style.inputCamp}
+              defaultValue={props.passsefaz}
               {...form.getInputProps("passsefaz")}
             />
           </Flex>

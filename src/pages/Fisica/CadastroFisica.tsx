@@ -1,11 +1,12 @@
-import { Button, Flex, Input, Switch } from "@mantine/core";
+import { Button, Flex, InputBase, Switch, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
-import style from "./Cadastro.module.css";
+import { useMediaQuery } from "@mantine/hooks";
+import { IMaskInput } from "react-imask";
 import cadastraCliente from "../../services/client/cadastraClientes";
-import { InputBase } from '@mantine/core';
-import { IMaskInput } from 'react-imask';
+import style from "./Cadastro.module.css";
 
 export default function CadastroFisica() {
+  const isMobile = useMediaQuery("(max-width: 50em)");
   const form = useForm({
     initialValues: {
       nome: "",
@@ -26,11 +27,11 @@ export default function CadastroFisica() {
       pais: "",
       cnae: "",
     },
-    validate:{  
+    validate: {
       nome: isNotEmpty("O campo de nome não pode ser vazio"),
       cgc: isNotEmpty("O campo de cgc não pode ser vazio"),
       apelido: isNotEmpty("O campo de apelido não pode ser vazio"),
-      telefone: isNotEmpty("O campo de telefone não pode ser vazio"),  
+      telefone: isNotEmpty("O campo de telefone não pode ser vazio"),
       email: isNotEmpty("O campo de email não pode ser vazio"),
       cidade: isNotEmpty("O campo de cidade não pode ser vazio"),
       cep: isNotEmpty("O campo de cep não pode ser vazio"),
@@ -44,10 +45,10 @@ export default function CadastroFisica() {
       contrato: isNotEmpty("O campo de contrato não pode ser vazio"),
       pais: isNotEmpty("O campo de país não pode ser vazio"),
       cnae: isNotEmpty("O campo de cnae não pode ser vazio"),
-    }
+    },
   });
 
-  const cadastra = async({
+  const cadastra = async ({
     nome,
     cgc,
     apelido,
@@ -84,7 +85,7 @@ export default function CadastroFisica() {
     pais: string;
     cnae: string;
   }) => {
-    try{
+    try {
       await cadastraCliente({
         nome,
         cgc,
@@ -105,104 +106,35 @@ export default function CadastroFisica() {
         cnae,
       });
       form.reset();
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
       <form onSubmit={form.onSubmit(cadastra)}>
-      <Flex justify="center" align="start">
-      <Flex justify="center" align="center" direction='column' rowGap='xl'>
-        <Flex columnGap="5em" rowGap="xs" direction="row" wrap="wrap">
-          <Flex justify="center" align="start" gap="xs" direction="column">
-            <Flex>           
-              <Switch.Group label="Contrato" 
-              withAsterisk 
-              size="sm"
-              {...form.getInputProps("contrato")}>
+        <Flex direction="column" align="center" p="xs">
+          <Flex
+            wrap="wrap"
+            justify="space-between"
+            direction={isMobile ? "column" : "row"}
+            className={style.swicths}
+          >
+            <Flex justify={isMobile ? "center" : "space-between"}>
+              <Switch.Group
+                label="Contrato"
+                withAsterisk
+                size="sm"
+                {...form.getInputProps("contrato")}
+              >
                 <Switch value="Contrato" />
               </Switch.Group>
             </Flex>
-            <div>
-              <label htmlFor="Nome">Nome</label>
-              <Input
-                name="Nome"
-                placeholder="Informe o nome"
-                className={style.inputCamp}
-                {...form.getInputProps("nome")}
-              />
-            </div>
-            <div>
-              <label htmlFor="CPF">CPF</label>
-              <InputBase<any>
-                name="CPF"
-                component={IMaskInput}
-                mask="000.000.000-00"
-                placeholder="Informe o CPF"
-                className={style.inputCamp}
-                {...form.getInputProps("cgc")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Ramo de Atividade">Ramo de Atividade</label>
-              <Input
-                name="Ramo de Atividade"
-                placeholder="Informe o ramo de atividade"
-                className={style.inputCamp}
-                {...form.getInputProps("ramodeatividade")}
-              />
-            </div>
-            <div>
-              <label htmlFor="CEP">CEP</label>
-              <InputBase<any>
-                name="CEP"
-                component={IMaskInput}
-                mask="00000-000"
-                placeholder="Informe o CEP"
-                className={style.inputCamp}
-                {...form.getInputProps("cep")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Bairro">Bairro</label>
-              <Input
-                name="Bairro"
-                placeholder="Informe o Bairro"
-                className={style.inputCamp}
-                {...form.getInputProps("bairro")}
-              />
-            </div>
-            <div>
-              <label htmlFor="logradouro">logradouro</label>
-              <Input
-                name="logradouro"
-                placeholder="Informe o logradouro"
-                className={style.inputCamp}
-                {...form.getInputProps("logradouro")}
-              />
-            </div>
-            <div>
-              <label htmlFor="cnae">CNAE</label>
-              <Input
-                name="cnae"
-                placeholder="Informe o cnae"
-                className={style.inputCamp}
-                {...form.getInputProps("cnae")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Usuário Sefaz">Usuário Sefaz</label>
-              <Input
-                name="Usuário Sefaz"
-                placeholder="Login"
-                className={style.inputCamp}
-                {...form.getInputProps("usursefaz")}
-              />
-            </div>
-          </Flex>
-          <Flex justify="center" align="center" gap="xs" direction="column">
-            <Flex align="center" columnGap="5.4em" direction="row">
+            <Flex
+              align="center"
+              columnGap="5.4em"
+              justify={isMobile ? "center" : "space-between"}
+            >
               <Switch.Group label="Fiscal" size="sm">
                 <Switch value="fiscal" />
               </Switch.Group>
@@ -213,85 +145,127 @@ export default function CadastroFisica() {
                 <Switch value="contabil" />
               </Switch.Group>
             </Flex>
-            <div>
-              <label htmlFor="Apelido">Apelido</label>
-              <Input
-                name="Apelido"
-                placeholder="Informe o apelido"
-                className={style.inputCamp}
-                {...form.getInputProps("apelido")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Telefone">Telefone</label>
-              <InputBase<any>
-                name="Telefone"
-                component={IMaskInput}
-                mask="+00 (00) 00000-0000"
-                placeholder="Informe o telefone"
-                className={style.inputCamp}
-                {...form.getInputProps("telefone")}
-              />
-            </div>
-            <div>
-              <label htmlFor="E-mail">E-mail</label>
-              <Input
-                name="E-mail"
-                placeholder="Informe o e-mail"
-                className={style.inputCamp}
-                {...form.getInputProps("email")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Cidade">Cidade</label>
-              <Input
-                name="Cidade"
-                placeholder="Informe o cidade"
-                className={style.inputCamp}
-                {...form.getInputProps("cidade")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Estado">Estado</label>
-              <Input
-                name="Estado"
-                placeholder="Informe o estado"
-                className={style.inputCamp}
-                {...form.getInputProps("estado")}
-              />
-            </div>
-            <div>
-              <label htmlFor="pais">País</label>
-              <Input
-                name="pais"
-                placeholder="Informe o País"
-                className={style.inputCamp}
-                {...form.getInputProps("pais")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Numero">Numero</label>
-              <Input
-                name="Numero"
-                placeholder="Informe o numero"
-                className={style.inputCamp}
-                {...form.getInputProps("numero")}
-              />
-            </div>
-            <div>
-              <label htmlFor="Senha Sefaz">Senha Sefaz</label>
-              <Input
-                name="Senha Sefaz"
-                placeholder="Senha"
-                className={style.inputCamp}
-                {...form.getInputProps("passsefaz")}
-              />
-            </div>
           </Flex>
+          <Flex
+            justify={isMobile ? "center" : "space-between"}
+            wrap="wrap"
+            gap="xs"
+          >
+            <TextInput
+              label="Nome"
+              placeholder="Informe o nome"
+              className={style.inputCamp}
+              {...form.getInputProps("nome")}
+            />
+
+            <TextInput
+              label="Apelido"
+              placeholder="Informe o apelido"
+              className={style.inputCamp}
+              {...form.getInputProps("apelido")}
+            />
+            <InputBase<any>
+              label="CPF"
+              component={IMaskInput}
+              mask="000.000.000-00"
+              placeholder="Informe o CPF"
+              className={style.inputCamp}
+              {...form.getInputProps("cgc")}
+            />
+            <InputBase<any>
+              label="Telefone"
+              component={IMaskInput}
+              mask="+00 (00) 00000-0000"
+              placeholder="Informe o telefone"
+              className={style.inputCamp}
+              {...form.getInputProps("telefone")}
+            />
+            <TextInput
+              label="E-mail"
+              placeholder="Informe o e-mail"
+              className={style.inputCamp}
+              {...form.getInputProps("email")}
+            />
+            <TextInput
+              label="CNAE"
+              placeholder="Informe o cnae"
+              className={style.inputCamp}
+              {...form.getInputProps("cnae")}
+            />
+
+            <TextInput
+              label="Ramo de Atividade"
+              placeholder="Informe o ramo de atividade"
+              className={style.inputCamp}
+              {...form.getInputProps("ramodeatividade")}
+            />
+
+            <InputBase<any>
+              label="CEP"
+              component={IMaskInput}
+              mask="00000-000"
+              placeholder="Informe o CEP"
+              className={style.inputCamp}
+              {...form.getInputProps("cep")}
+            />
+            <TextInput
+              label="Cidade"
+              placeholder="Informe o cidade"
+              className={style.inputCamp}
+              {...form.getInputProps("cidade")}
+            />
+
+            <TextInput
+              label="Logradouro"
+              placeholder="Informe o logradouro"
+              className={style.inputCamp}
+              {...form.getInputProps("logradouro")}
+            />
+            <TextInput
+              label="Bairro"
+              placeholder="Informe o Bairro"
+              className={style.inputCamp}
+              {...form.getInputProps("bairro")}
+            />
+
+            <TextInput
+              label="Estado"
+              placeholder="Informe o estado"
+              className={style.inputCamp}
+              {...form.getInputProps("estado")}
+            />
+
+            <TextInput
+              label="País"
+              placeholder="Informe o País"
+              className={style.inputCamp}
+              {...form.getInputProps("pais")}
+            />
+
+            <TextInput
+              label="Número"
+              placeholder="Informe o numero"
+              className={style.inputCamp}
+              {...form.getInputProps("numero")}
+            />
+
+            <TextInput
+              label="Usuário Sefaz"
+              placeholder="Login"
+              className={style.inputCamp}
+              {...form.getInputProps("usursefaz")}
+            />
+            <TextInput
+              label="Senha Sefaz"
+              placeholder="Senha"
+              className={style.inputCamp}
+              {...form.getInputProps("passsefaz")}
+            />
+          </Flex>
+          <Button mt="xl" className={style.salvar}>
+            Salvar
+          </Button>
         </Flex>
-        <Button fullWidth className="botao" >Salvar</Button>
-      </Flex>
-      </Flex>
       </form>
     </div>
   );

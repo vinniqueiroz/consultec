@@ -175,13 +175,6 @@ export default function ClienteJuridico() {
             }}
           />
 
-          <Flex
-            direction="row"
-            justify="flex-end"
-            mt="xs"
-            className={style.adicionarButton}
-          >
-          </Flex>
         </Flex>
         <Flex direction="column" className={style.funcionarios}>
           <Flex justify="center" mb="xs">
