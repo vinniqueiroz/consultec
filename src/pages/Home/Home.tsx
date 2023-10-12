@@ -22,6 +22,7 @@ import { TbLogout } from "react-icons/tb";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import consultec from "../../assets/CONSULTEC.svg";
 import { useAuthStore } from "../../stores/useAuthStore";
+import { GoLinkExternal } from "react-icons/go";
 export default function Home() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -38,6 +39,11 @@ export default function Home() {
 
   const itensMenu = [
     {
+      label: "Atalhos",
+      icon: GoLinkExternal,
+      path: "/atalhos",
+    },
+    {
       label: "Jurídica",
       icon: FaBalanceScale,
       path: "/juridica",
@@ -46,7 +52,7 @@ export default function Home() {
       label: "Física",
       icon: BsFileEarmarkPersonFill,
       path: "/fisica",
-    },
+    }
   ];
 
   return (

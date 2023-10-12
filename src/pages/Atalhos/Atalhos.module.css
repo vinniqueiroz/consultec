@@ -1,0 +1,15 @@
+.novoAtalho {
+  width: 10em;
+  background: linear-gradient(180deg, #2256f2 0%, #4674ff 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.09);
+}
+.Cards {
+  width: 9.9em;
+  display: flex;
+  justify-content: center;
+}
+@media (width <= 1080px) {
+  .novoAtalho {
+    width: 100%;
+  }
+}

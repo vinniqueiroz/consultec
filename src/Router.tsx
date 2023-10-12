@@ -12,10 +12,13 @@ import Fisica from "./pages/Fisica/Fisica";
 import Home from "./pages/Home/Home";
 import CadastroJuridica from "./pages/Juridica/CadastroJuridica";
 import ClienteJuridico from "./pages/Juridica/ClienteJuridico";
+import EditarClienteJuridico from "./pages/Juridica/EditarCienteJuridico";
+import EditarClienteFisico from "./pages/Fisica/EditarClienteFisico";
 import Juridica from "./pages/Juridica/Juridica";
 import Login from "./pages/Login/Login";
-import { useAuthStore } from "./stores/useAuthStore";
 import NotFound from "./pages/NotFound";
+import Atalhos from "./pages/Atalhos/Atalhos";
+import { useAuthStore } from "./stores/useAuthStore";
 
 const AuthRoute = () => {
   const { access_token } = useAuthStore.getState();
@@ -48,12 +51,51 @@ export function Router() {
         </Route>
         <Route path="/" element={<ProtectedRoute outlet={<Home />} />}>
           <Route
+            path="/Atalhos"
+            element={<ProtectedRoute outlet={<Atalhos />} />}
+          />
+          <Route
             path="/juridica"
             element={<ProtectedRoute outlet={<Juridica />} />}
           />
           <Route
             path="/cadastro/juridica"
             element={<ProtectedRoute outlet={<CadastroJuridica />} />}
+          />
+          <Route
+            path="/cliente/juridico/:id"
+            element={<ProtectedRoute outlet={<ClienteJuridico />} />}
+          />
+          <Route
+            path="/cliente/editar/juridico/:id"
+            element={
+              <ProtectedRoute
+                outlet={
+                  <EditarClienteJuridico
+                    razaosocial="teste"
+                    cgc="teste"
+                    fantasia="teste"
+                    telefone="teste"
+                    email="teste"
+                    cep="teste"
+                    cidade="teste"
+                    estado="teste"
+                    numero="teste"
+                    bairro="teste"
+                    ramodeatividade="teste"
+                    logradouro="teste"
+                    usursefaz="teste"
+                    passsefaz="teste"
+                    contrato="teste"
+                    pais="teste"
+                    cnae="teste"
+                    plcontabil="teste"
+                    plfiscal="teste"
+                    plpessoal="teste"
+                  />
+                }
+              />
+            }
           />
           <Route
             path="/fisica"
@@ -64,8 +106,35 @@ export function Router() {
             element={<ProtectedRoute outlet={<CadastroFisica />} />}
           />
           <Route
-            path="/cliente/juridico/:id"
-            element={<ProtectedRoute outlet={<ClienteJuridico />} />}
+            path="/cliente/editar/fisico/:id"
+            element={
+              <ProtectedRoute
+                outlet={
+                  <EditarClienteFisico
+                    nome="teste"
+                    cgc="teste"
+                    apelido="teste"
+                    telefone="teste"
+                    email="teste"
+                    cep="teste"
+                    cidade="teste"
+                    estado="teste"
+                    numero="teste"
+                    bairro="teste"
+                    ramodeatividade="teste"
+                    logradouro="teste"
+                    usursefaz="teste"
+                    passsefaz="teste"
+                    contrato="teste"
+                    pais="teste"
+                    cnae="teste"
+                    plcontabil="teste"
+                    plfiscal="teste"
+                    plpessoal="teste"
+                  />
+                }
+              />
+            }
           />
           <Route
             path="/cliente/fisico/:id"
