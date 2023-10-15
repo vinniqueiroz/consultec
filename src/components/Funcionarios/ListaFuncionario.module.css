@@ -1,0 +1,12 @@
+  .titulo {
+    color: #222;
+  }
+  
+  
+  @media (width <= 1080px) {
+    .titulo{
+      text-align: center;
+    }
+    
+  }
+  

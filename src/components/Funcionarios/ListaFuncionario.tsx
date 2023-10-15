@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 import deleteFuncionario from "../../services/funcionarios/deletaFuncionario";
 import listaFuncionarios from "../../services/funcionarios/listaFuncionarios";
 import Acoes from "../Acoes";
+import { Title, Flex, Button  } from "@mantine/core";
+import style from './ListaFuncionario.module.css'
 
 interface PropsData {
   id: string;
 }
 
-export default function ListaFuncionarioJuridico( props: PropsData) {
+export default function ListaFuncionario( props: PropsData) {
   const navigate = useNavigate();
 
   const { data, isFetching, isRefetching, refetch } = useQuery({
@@ -42,7 +44,12 @@ export default function ListaFuncionarioJuridico( props: PropsData) {
   };
 
   return (
-    <div>
+    <Flex direction='column'>
+      <Flex justify="center" mb="xs">
+            <Title order={2} className={style.titulo}>
+              Funcionários
+            </Title>
+          </Flex>
       <DataTable
         minHeight={132}
         withBorder
@@ -81,6 +88,9 @@ export default function ListaFuncionarioJuridico( props: PropsData) {
         ]}
         noRecordsText="Nenhum registro encontrado!"
       />
-    </div>
+       <Flex justify="flex-end" mt='xs'>
+        <Button className="botao">+</Button>
+      </Flex>
+    </Flex>
   );
 }
