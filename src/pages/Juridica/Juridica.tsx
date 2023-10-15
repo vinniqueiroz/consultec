@@ -11,7 +11,7 @@ export default function Juridica() {
   const navigate = useNavigate();
 
   const { data, isFetching, isRefetching, refetch } = useQuery({
-    queryKey: ["client"],
+    queryKey: ["clienteID"],
     queryFn: async () => listaClientesJ(),
   });
 
