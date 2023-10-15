@@ -2,8 +2,8 @@ import { Button, Flex, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { AxiosError } from "axios";
-import { Certificado } from "../services/certificado/Certificado";
-import cadastraCertificado from "../services/certificado/cadastraCertificado";
+import { Certificado } from "../../services/certificado/Certificado";
+import cadastraCertificado from "../../services/certificado/cadastraCertificado";
 
 interface ModalCadastra {
   certificado: Certificado;

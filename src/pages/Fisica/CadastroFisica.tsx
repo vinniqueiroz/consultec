@@ -2,8 +2,8 @@ import { Button, Flex, InputBase, Switch, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
 import { useMediaQuery } from "@mantine/hooks";
 import { IMaskInput } from "react-imask";
-import cadastraCliente from "../../services/client/cadastraClientes";
 import style from "./Cadastro.module.css";
+import  cadastraClienteF  from "../../services/client/cadastraClientesF";
 
 export default function CadastroFisica() {
   const isMobile = useMediaQuery("(max-width: 50em)");
@@ -86,7 +86,7 @@ export default function CadastroFisica() {
     cnae: string;
   }) => {
     try {
-      await cadastraCliente({
+      await cadastraClienteF({
         nome,
         cgc,
         apelido,
@@ -164,7 +164,7 @@ export default function CadastroFisica() {
               className={style.inputCamp}
               {...form.getInputProps("apelido")}
             />
-            <InputBase<any>
+            <InputBase
               label="CPF"
               component={IMaskInput}
               mask="000.000.000-00"
@@ -172,7 +172,7 @@ export default function CadastroFisica() {
               className={style.inputCamp}
               {...form.getInputProps("cgc")}
             />
-            <InputBase<any>
+            <InputBase
               label="Telefone"
               component={IMaskInput}
               mask="+00 (00) 00000-0000"
@@ -200,7 +200,7 @@ export default function CadastroFisica() {
               {...form.getInputProps("ramodeatividade")}
             />
 
-            <InputBase<any>
+            <InputBase
               label="CEP"
               component={IMaskInput}
               mask="00000-000"
@@ -262,7 +262,7 @@ export default function CadastroFisica() {
               {...form.getInputProps("passsefaz")}
             />
           </Flex>
-          <Button mt="xl" className={style.salvar}>
+          <Button mt="xl" className={style.salvar} type="submit">
             Salvar
           </Button>
         </Flex>

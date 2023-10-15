@@ -2,15 +2,15 @@ import { Divider, Flex, Text, Title } from "@mantine/core";
 import style from "../pages/Juridica/ClienteJuridico.module.css";
 
 interface InfoClienteProps {
-  Contrato: string;
-  Fantasia: string;
-  Razao: string;
-  Tel: string;
-  Email: string;
-  Cgc: string;
-  Ramo: string;
-  Cnae: string;
-  Planos: string;
+  Contrato?: string;
+  Apelido?: string;
+  Nome?: string;
+  Tel?: string;
+  Email?: string;
+  Cgc?: string;
+  Ramo?: string;
+  Cnae?: string;
+  Planos?: string;
 }
 export default function InfoClienteF(props: InfoClienteProps) {
   return (
@@ -27,12 +27,12 @@ export default function InfoClienteF(props: InfoClienteProps) {
           <Divider size="xs" />
           <Flex gap="xs" className={style.informacoes}>
             <Text className={style.destaque}>Apelido:</Text>
-            <Text>{props.Fantasia}</Text>
+            <Text>{props.Apelido}</Text>
           </Flex>
           <Divider size="xs" />
           <Flex gap="xs" className={style.informacoes}>
             <Text className={style.destaque}>Nome:</Text>
-            <Text>{props.Razao}</Text>
+            <Text>{props.Nome}</Text>
           </Flex>
           <Divider size="xs" />
           <Flex gap="xs" className={style.informacoes}>

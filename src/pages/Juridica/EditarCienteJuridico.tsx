@@ -2,7 +2,7 @@ import { Button, Flex, InputBase, Switch, TextInput } from "@mantine/core";
 import { isNotEmpty, useForm } from "@mantine/form";
 import { useMediaQuery } from "@mantine/hooks";
 import { IMaskInput } from "react-imask";
-import cadastraCliente from "../../services/client/cadastraClientes";
+import cadastraCliente from "../../services/client/cadastraClientesJ";
 import style from "./Cadastro.module.css";
 
 interface InfoClienteProps {
