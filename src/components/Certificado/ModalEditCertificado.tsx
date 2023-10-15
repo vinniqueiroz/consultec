@@ -1,7 +1,7 @@
 import { isNotEmpty, useForm } from "@mantine/form";
-import { Certificado } from "../services/certificado/Certificado";
+import { Certificado } from "../../services/certificado/Certificado";
 import { showNotification } from "@mantine/notifications";
-import editaCertificado from "../services/certificado/editaCertificado";
+import editaCertificado from "../../services/certificado/editaCertificado";
 import { Button, Flex, TextInput } from "@mantine/core";
 import { AxiosError } from "axios";
 
