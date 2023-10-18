@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Acoes from "../../components/Acoes";
 import deleteClient from "../../services/client/deletaCliente";
 import listaClientesF from "../../services/client/listaClientesF";
+import { Flex, TextInput } from "@mantine/core";
 
 export default function Fisica() {
   const navigate = useNavigate();
@@ -39,6 +40,26 @@ export default function Fisica() {
 
   return (
     <div>
+      <Flex justify="space-around" wrap="wrap">
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pela Fantasia"
+          placeholder="Fantasia"
+          mb="md"
+        />
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pela Razão Social"
+          placeholder="Razão Social"
+          mb="md"
+        />
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pelo CNPJ"
+          placeholder="CNPJ"
+          mb="md"
+        />
+      </Flex>
       <DataTable
         minHeight={132}
         withBorder
@@ -66,7 +87,9 @@ export default function Fisica() {
             render: (data) => (
               <Acoes
                 acaoDetalhar={() => navigate(`/cliente/fisico/${data.cgc}`)}
-                acaoEditar={() => navigate(`/cliente/editar/fisico/${data.cgc}`)}
+                acaoEditar={() =>
+                  navigate(`/cliente/editar/fisico/${data.cgc}`)
+                }
                 acaoExcluir={() => exclui(data.cgc)}
               />
             ),
