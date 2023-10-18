@@ -66,7 +66,7 @@ export default function Fisica() {
             render: (data) => (
               <Acoes
                 acaoDetalhar={() => navigate(`/cliente/fisico/${data.cgc}`)}
-                acaoEditar={() => navigate(`/edita/${data.cgc}`)}
+                acaoEditar={() => navigate(`/cliente/editar/fisico/${data.cgc}`)}
                 acaoExcluir={() => exclui(data.cgc)}
               />
             ),

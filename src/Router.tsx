@@ -68,34 +68,7 @@ export function Router() {
           />
           <Route
             path="/cliente/editar/juridico/:id"
-            element={
-              <ProtectedRoute
-                outlet={
-                  <EditarClienteJuridico
-                    razaosocial="teste"
-                    cgc="teste"
-                    fantasia="teste"
-                    telefone="teste"
-                    email="teste"
-                    cep="teste"
-                    cidade="teste"
-                    estado="teste"
-                    numero="teste"
-                    bairro="teste"
-                    ramodeatividade="teste"
-                    logradouro="teste"
-                    usursefaz="teste"
-                    passsefaz="teste"
-                    contrato="teste"
-                    pais="teste"
-                    cnae="teste"
-                    plcontabil="teste"
-                    plfiscal="teste"
-                    plpessoal="teste"
-                  />
-                }
-              />
-            }
+            element={<ProtectedRoute outlet={<EditarClienteJuridico />} />}
           />
           <Route
             path="/fisica"
@@ -107,34 +80,7 @@ export function Router() {
           />
           <Route
             path="/cliente/editar/fisico/:id"
-            element={
-              <ProtectedRoute
-                outlet={
-                  <EditarClienteFisico
-                    nome="teste"
-                    cgc="teste"
-                    apelido="teste"
-                    telefone="teste"
-                    email="teste"
-                    cep="teste"
-                    cidade="teste"
-                    estado="teste"
-                    numero="teste"
-                    bairro="teste"
-                    ramodeatividade="teste"
-                    logradouro="teste"
-                    usursefaz="teste"
-                    passsefaz="teste"
-                    contrato="teste"
-                    pais="teste"
-                    cnae="teste"
-                    plcontabil="teste"
-                    plfiscal="teste"
-                    plpessoal="teste"
-                  />
-                }
-              />
-            }
+            element={<ProtectedRoute outlet={<EditarClienteFisico />} />}
           />
           <Route
             path="/cliente/fisico/:id"

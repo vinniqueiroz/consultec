@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Acoes from "../../components/Acoes";
 import deleteClient from "../../services/client/deletaCliente";
 import listaClientesJ from "../../services/client/listaClientesJ";
+import { modals } from "@mantine/modals";
+import { Flex, Text, TextInput } from "@mantine/core";
+import { Clientes } from "../../services/client/Clientes";
 
 export default function Juridica() {
   const navigate = useNavigate();
@@ -14,6 +17,18 @@ export default function Juridica() {
     queryKey: ["clienteID"],
     queryFn: async () => listaClientesJ(),
   });
+
+  const abreDialogDeExclusao = (data: Clientes) =>
+    modals.openConfirmModal({
+      title: "Exclusão",
+      children: (
+        <Text size="sm">
+          Você está prestes a excluir o cliente com CNPJ: #{data.cgc}"
+        </Text>
+      ),
+      labels: { confirm: "Confirmar Exclusão", cancel: "Cancelar" },
+      onConfirm: () => exclui(data._id),
+    });
 
   const exclui = async (cgc: string) => {
     try {
@@ -39,6 +54,26 @@ export default function Juridica() {
 
   return (
     <div>
+      <Flex justify="space-around" wrap="wrap">
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pela Fantasia"
+          placeholder="Fantasia"
+          mb="md"
+        />
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pela Razão Social"
+          placeholder="Razão Social"
+          mb="md"
+        />
+        <TextInput
+          label="Buscar"
+          description="Filtre clientes pelo CNPJ"
+          placeholder="CNPJ"
+          mb="md"
+        />
+      </Flex>
       <DataTable
         minHeight={132}
         withBorder
@@ -67,8 +102,10 @@ export default function Juridica() {
             render: (data) => (
               <Acoes
                 acaoDetalhar={() => navigate(`/cliente/juridico/${data._id}`)}
-                acaoEditar={() => navigate(`/edita/${data._id}`)}
-                acaoExcluir={() => exclui(data._id)}
+                acaoEditar={() =>
+                  navigate(`/cliente/editar/juridico/${data._id}`)
+                }
+                acaoExcluir={() => abreDialogDeExclusao(data)}
               />
             ),
           },

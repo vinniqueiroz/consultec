@@ -88,9 +88,14 @@ export default function ListaFuncionario( props: PropsData) {
         ]}
         noRecordsText="Nenhum registro encontrado!"
       />
-       <Flex justify="flex-end" mt='xs'>
-        <Button className="botao">+</Button>
+      <Flex justify="flex-end" mt="xs">
+        <Button
+          className="botao"
+          onClick={() => navigate(`/cadastra/funcionarios/${props.id}`)}
+        >
+          +
+        </Button>
       </Flex>
-    </Flex>
+    </div>
   );
 }
